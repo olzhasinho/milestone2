@@ -1,0 +1,7 @@
+﻿@model FavoritesViewModel
+
+@foreach (var art in Model.FavoriteArts)
+{
+    <partial name="_ArtCard" model="art" />
+}
+

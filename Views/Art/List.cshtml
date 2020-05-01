@@ -1,0 +1,19 @@
+﻿@model ArtsListViewModel
+
+    <form asp-action="SearchList" method="POST">
+        <div class="row input-group">
+            <input type="text" name="search" id="search" class="form-control" />
+            <div class="input-group-btn">
+                <input type="submit" value="search" class="btn btn-primary" />
+            </div>
+        </div>
+    </form>
+
+<h1>@Model.CurrentCategory</h1>
+
+@foreach (var art in Model.Arts)
+{
+    <partial name="_ArtCard" model="art"/>
+}
+
+<input class="btn btn-primary" TYPE="button" VALUE="Add to Favorites"/>

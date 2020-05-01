@@ -1,0 +1,17 @@
+﻿@model FoundViewModel
+
+    <form asp-action="SearchList" method="POST">
+        <div class="row input-group">
+            <input type="text" name="search" id="search" class="form-control" />
+            <div class="input-group-btn">
+                <input type="submit" value="search" class="btn btn-primary" />
+            </div>
+        </div>
+        <a class="btn btn-primary" asp-controller="Art" asp-action="List">Get Back</a>
+    </form>
+
+
+@foreach (var art in Model.FoundArts)
+{
+    <partial name="_ArtCard" model="art" />
+}

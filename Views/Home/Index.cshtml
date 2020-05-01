@@ -1,0 +1,14 @@
+﻿@model HomeViewModel
+
+<partial name="_Carousel" />
+
+<h2>Arts of the week</h2>
+
+<div class="row">
+
+    @foreach (var art in Model.ArtsOfTheWeek)
+    {
+        <partial name="_ArtCard" model="art" />
+    }
+
+</div>
