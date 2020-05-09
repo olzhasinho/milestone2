@@ -13,10 +13,11 @@ namespace ArtShop3.Controllers
     public class HomeController : Controller
     {
         private readonly IArtRepository _artRepository;
-
-        public HomeController(IArtRepository artRepository)
+        private readonly AppDbContext _context;
+        public HomeController(IArtRepository artRepository, AppDbContext context)
         {
             _artRepository = artRepository;
+            _context = context;
         } 
 
         public IActionResult Index()

@@ -14,9 +14,10 @@ namespace ArtShop3.Controllers
     {
         private readonly IArtRepository _artRepository;
         private readonly ShoppingCart _shoppingCart;
-
-        public ShoppingCartController(IArtRepository artRepository, ShoppingCart shoppingCart)
+        private readonly AppDbContext _context;
+        public ShoppingCartController(IArtRepository artRepository, ShoppingCart shoppingCart, AppDbContext context)
         {
+            _context = context;
             _artRepository = artRepository;
             _shoppingCart = shoppingCart;
         }

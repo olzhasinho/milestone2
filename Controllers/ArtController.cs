@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ArtShop3.Models;
 using ArtShop3.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -14,15 +15,16 @@ namespace ArtShop3.Controllers
     {
         private readonly IArtRepository _artRepository;
         private readonly ICategoryRepository _categoryRepository;
+        private readonly AppDbContext _context;
 
-        public ArtController(IArtRepository artRepository, ICategoryRepository categoryRepository)
+        public ArtController(IArtRepository artRepository, ICategoryRepository categoryRepository, AppDbContext context)
         {
             _artRepository = artRepository;
             _categoryRepository = categoryRepository;
-
+            _context = context;
         }
-
-
+        
+        [Authorize]
         public IActionResult Favorites()
         {
             

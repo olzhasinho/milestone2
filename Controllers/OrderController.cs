@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Threading.Tasks;
 
 namespace ArtShop3.Controllers
@@ -11,10 +12,11 @@ namespace ArtShop3.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
-
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
+        private readonly AppDbContext _context;
+        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart, AppDbContext context)
         {
             _orderRepository = orderRepository;
+            _context = context;
             _shoppingCart = shoppingCart;
         }
 

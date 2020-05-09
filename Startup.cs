@@ -6,6 +6,7 @@ using ArtShop3.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -36,6 +37,21 @@ namespace ArtShop3
             services.AddHttpContextAccessor();
             services.AddSession();
 
+            services.AddIdentity<IdentityUser, IdentityRole>(config =>
+            {
+                config.Password.RequireDigit = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequireUppercase = false;
+                config.Password.RequiredLength = 4;
+            })
+                .AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(config =>
+            {
+                config.Cookie.Name = "ArtShop.Identity.Cookie";
+                config.LoginPath = "/Auth/Login";
+            });
+            
             services.AddControllersWithViews();
             
         }
@@ -54,7 +70,8 @@ namespace ArtShop3
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
-
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
