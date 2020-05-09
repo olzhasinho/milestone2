@@ -43,10 +43,12 @@ namespace ArtShop3.Controllers
             return View(order);
         }
 
+
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Your art is in road";
             return View();
         }
+        
     }
 }
