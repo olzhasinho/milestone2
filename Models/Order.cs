@@ -31,7 +31,6 @@ namespace ArtShop3.Models
         
         //custom attr validation
         [ValidEmailDomain(allowedDomain: "dl.iitu.kz", ErrorMessage = "Email domain must be dl.iitu.kz")]
-
         public string Email { get; set; }
 
         [BindNever]
