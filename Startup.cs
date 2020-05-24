@@ -37,6 +37,8 @@ namespace ArtShop3
             services.AddSession();
 
             services.AddControllersWithViews();
+            services.AddTransient<Service>();
+
             
         }
 

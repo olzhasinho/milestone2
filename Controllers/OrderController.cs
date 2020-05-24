@@ -11,19 +11,33 @@ namespace ArtShop3.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
+        private readonly Service service;
 
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
+
+        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart, Service service)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
+            this.service = service;
         }
 
+
         // GET: /<controller>/
-        public IActionResult Checkout()
+        public IActionResult Checkout() 
         {
             return View();
         }
-                [HttpPost]
+        public IActionResult SendEmailDefault()
+        {
+            service.SendEmailDefault();
+            return RedirectToAction("CheckoutComplete");
+        }
+        public IActionResult SendEmailCustom()
+        {
+            service.SendEmailCustom();
+            return RedirectToAction("CheckoutComplete");
+        }
+        [HttpPost]
         public IActionResult Checkout(Order order)
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -47,8 +61,10 @@ namespace ArtShop3.Controllers
         public IActionResult CheckoutComplete()
         {
             ViewBag.CheckoutCompleteMessage = "Your art is in road";
+
             return View();
         }
-        
+
+
     }
 }

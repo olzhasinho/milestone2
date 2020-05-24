@@ -28,5 +28,7 @@ namespace ArtShop3.Controllers
 
             return View(homeViewModel);
         }
+
+
     }
 }

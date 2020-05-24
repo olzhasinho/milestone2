@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ArtShop3.Models
 {
-    public class Order : IValidatableObject
+    public class Order// : IValidatableObject
     {
         [BindNever]
         public int OrderId { get; set; }
@@ -40,14 +40,14 @@ namespace ArtShop3.Models
         [BindNever]
         [ScaffoldColumn(false)]
         public DateTime OrderPlaced { get; set; }
-        private const int _AvailableYear = 2021;
+        //private const int _AvailableYear = 2021;
         // IValidatableObject 
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        /*public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (_AvailableYear != DateTime.Now.Year)
             {
                 yield return new ValidationResult("can not get in currnet time will be available in 2021", new[] { "DOB" });
             }
-        }
+        }*/
     }
 }
